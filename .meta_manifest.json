@@ -1,0 +1,51 @@
+{
+  "manifest_version": "0.7.2",
+  "project_id": "metasyntatic-open-source-engine",
+  "last_synced_timestamp": "2026-07-02T22:45:00Z",
+  "global_state": {
+    "version": "0.7.2.0",
+    "status": "INITIALIZED",
+    "open_loops": [
+      "rehydrate_stubs_via_public_network_ingestion_bridge",
+      "verify_polyglot_subagent_execution_harness_contracts"
+    ]
+  },
+  "registry_index": {
+    "kernel": {
+      "id": "METASYNTATIC_BOOSTRAP_v0.7.2",
+      "path": "specs/kernel_v0.7.2.meta",
+      "expected_sha256": "PENDING_FIRST_COMPILE",
+      "status": "STABLE"
+    },
+    "index_map": {
+      "id": "specs/index_map.meta",
+      "path": "specs/index_map.meta",
+      "expected_sha256": "PENDING_FIRST_COMPILE",
+      "status": "STABLE"
+    },
+    "subagents_v1": {
+      "id": "polyglot_subagent_execution_harness",
+      "path": "stash/subagents_v1.meta",
+      "expected_sha256": "PENDING_FIRST_COMPILE",
+      "status": "STASHED"
+    },
+    "cluster_ide_v1": {
+      "id": "LOCAL_INTELLIGENT_IDE_SANDBOX",
+      "path": "stash/cluster_ide_v1.meta",
+      "expected_sha256": "PENDING_FIRST_COMPILE",
+      "status": "STASHED"
+    },
+    "cluster_consensus_v1": {
+      "id": "TRUSTLESS_DISTRIBUTED_CONSENSUS_GRID",
+      "path": "stash/cluster_consensus_v1.meta",
+      "expected_sha256": "PENDING_FIRST_COMPILE",
+      "status": "STASHED"
+    },
+    "cluster_compiler_v1": {
+      "id": "ARCHITECTURAL_COMPILER_AND_DEPLOYMENT_GATE",
+      "path": "stash/cluster_compiler_v1.meta",
+      "expected_sha256": "PENDING_FIRST_COMPILE",
+      "status": "STASHED"
+    }
+  }
+}
