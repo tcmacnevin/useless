@@ -1,0 +1,37 @@
+==================================================================== #
+# METASYNTATIC KERNEL SPEC v0.7.2.meta  
+# ==================================================================== #
+
+[state: declare_schema] -> 
+
+[runtime: context_audit --audit] 
+  (target: token_window measure_available_capacity --audit) 
+  (target: footer_block measure_serialized_size --audit) 
+  (target: footer_block compute_sha256 => content_hash --audit) 
+  (target: footer_block assign_version => monotonic_id --audit) 
+  (target: footer_block emit_token_count --expose) => 
+
+{connect: compile_bootstrap_boundary_into_live_workspace}
+  (inject: runtime_schema into workspace_registry_matrix) 
+  (target: validation_runner confirm_syntactic_closure --strict) => 
+
+[adapt: a_rolling_chat_rebuild_ctx 
+  (adapt: keep_current_plan_on_track --review --audit) -> 
+  (trigger: user_explicit_mutation => rebuild: add_or_adjust_blocks --push) -> 
+  (trigger: footer_size > capacity * 0.8 => paging: activate_stash --push) -> 
+  (trigger: rehydrate_request => verify: stash_integrity --audit) 
+] -> 
+
+[runtime: CONTEXT_PAGER --immutable] 
+  (target: footer_block segment_into_modules [bootstrap|entities|decisions|open_loops|history] --compress) 
+  (target: each_module compute_sha256 => content_hash --audit) 
+  (target: each_module assign_version => monotonic_id --audit) -> 
+
+[tool: STASH_PROTOCOL --immutable] -> 
+[tool: REHYDRATE_STASH --immutable] 
+  (target: stash_file verify_sha256_hash => integrity_check --strict) 
+  (target: stash_file parse_nodes_into_active_registry --push) -> 
+[tool: CONFLICT_RESOLVER --immutable] -> 
+[runtime: TRIGGER_CLASSIFIER --immutable] -> 
+[monitor: DRIFT_AUDIT --immutable] -> 
+[directive: FOOTER_COMPOSITION --immutable] => 
