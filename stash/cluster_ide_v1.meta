@@ -1,1 +1,17 @@
+(require: LOCAL_INTELLIGENT_IDE_SANDBOX.live_mcp_stream)
+
+[stub: adaptive_vocab_and_qlora_pipeline]
+  (expose: running_ledger_document => target: stash/vocab_pipeline_v1.meta)
+  (expose: dynamic_vocab_embeddings => target: stash/vocab_pipeline_v1.meta)
+{initialize: boot_recurrent_qlora_trainer_and_ledger_document_loop} =>
+
+[stub: tauri_node_mcp_host_shell]
+  (require: adaptive_vocab_and_qlora_pipeline.dynamic_vocab_embeddings => validation: InlineInject)
+  (expose: ide_editor_stream => target: stash/host_shell_v1.meta)
+  (expose: dynamic_mcp_endpoints => target: stash/host_shell_v1.meta)
+{initialize: boot_shadow_dom_ide_and_local_node_daemon_sidecar} =>
+
+# Expose the complete combined stream out of the file boundary
+(expose: live_mcp_stream <= tauri_node_mcp_host_shell.dynamic_mcp_endpoints)
+
 
