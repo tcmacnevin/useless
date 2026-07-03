@@ -1,1 +1,23 @@
+# STASH PAYLOAD: POLYGLOT SUBAGENT HARNESS & TESTING ENGINE
+# ====================================================================
+(require: polyglot_subagent_execution_harness.condensed_terminal_logs)
+(require: polyglot_subagent_execution_harness.dynamic_full_stack_metrics)
+
+[subagent: terminal_executor]
+  # Qwen Shell Driver: Builds commands, auto-debugs bad formatting, and returns clean log streams
+  (require: node_mcp_daemon.dynamic_mcp_endpoints => source: Local_Terminal_IPC_Socket)
+  (expose: condensed_terminal_logs => type: BoundedShellOutput)
+  (build: qwen_core monitor_runtime_stderr --boot)
+  (target: bad_command_format execute_auto_debugging_loop --strict)
+]
+{connect: pipe_condensed_terminal_logs_into_test_orchestrator} =>
+
+[subagent: multi_layer_test_orchestrator]
+  # Polyglot Validation Engine: Coordinates runtime-specific runners (PyTest, Cargo, Vitest, WGSL) natively
+  (require: subagent:terminal_executor.condensed_terminal_logs => validation: LiveAppServerWait)
+  (expose: dynamic_full_stack_metrics => type: BoundedAutomationReport)
+  (target: python_code_modules execute_pytest_within_wasm_sandbox --strict)
+  (target: rust_crates_and_tauri_core execute_cargo_unit_tests --strict)
+  (target: shadow_dom_viewports execute_playwright_e2e_tests --stream)
+  (target: wgsl_gpu_kernels verify_layer_61_deterministic_signatures --strict)]
 
