@@ -1,1 +1,15 @@
+(require: TRUSTLESS_DISTRIBUTED_CONSENSUS_GRID.verified_codebase_delta)
+
+[stub: structural_meta_compilers]
+  (require: deployment_internet_pipeline_configuration_matrix.active_sandbox_context => source: verified_codebase_delta)
+  (expose: compiler_analysis_context => target: stash/meta_compilers_v1.meta)
+{initialize: boot_meta_analysis_and_graph_weaving} =>
+
+[stub: bidirectional_kernel_ast_integration_matrix]
+  (require: structural_meta_compilers.compiler_analysis_context => validation: ContractCheck)
+  (expose: synchronized_handshake_context => target: stash/sync_matrix_v1.meta)
+{initialize: boot_two_way_verification_gateway} =>
+
+# Expose the global stable state signature out of the file boundary
+(expose: absolute_system_state <= bidirectional_kernel_ast_integration_matrix.sync
 
